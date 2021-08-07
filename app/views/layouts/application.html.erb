@@ -7,9 +7,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/2f5178629f.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
+    <p id="notice"><%= notice %></p>
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
