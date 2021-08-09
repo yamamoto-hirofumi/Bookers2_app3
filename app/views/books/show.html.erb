@@ -8,35 +8,18 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Book detail</h2>
-      <table class='table'>
-        <tr>
-          <td>
-            <%= link_to user_path(@book.user) do %>
-              <%= attachment_image_tag @book.user, :profile_image, size: "60x60", fallback: "no_image.jpg"%><br>
-              <%= @book.user.name %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to book_path(@book) do %>
-              <%= @book.title %>
-            <% end %>
-          </td>
-          <td>
-            <%= @book.body %>
-          </td>
-          <td>
-            <%= render 'favorites/favorites', book: @book %>
-          </td>
-          <td>
-            コメント数：<%= @book.book_comments.count %>
-          </td>
-          <% if @book.user == current_user %>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に削除しますか？"  %></td>
-          <% end %>
-        </tr>
-      </table>
-      <%= render 'book_comments/comments', book: @book, book_comment: @book_comment %>
+      <div class="detail-table">
+       <%= render 'books/detail', book: @book %>
+      </div>
+      <div class=comments-area>
+        <%= render 'book_comments/comments', book: @book %>
+      </div>
+      <div class="new-comment">
+         <%= form_with(model:[@book, @book_comment]) do |f| %>
+          <%= f.text_area :comment, size:'90x5', class: "text_area" %><br>
+          <%= f.submit "送信" %>
+         <% end %>
+      </div>
     </div>
   </div>
 </div>
